@@ -1,13 +1,21 @@
 *.iml
 .gradle
 /local.properties
+<<<<<<< HEAD
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+=======
+/.idea
+>>>>>>> init commit
 .DS_Store
 /build
 /captures
 .externalNativeBuild
+<<<<<<< HEAD
+=======
+/local.properties
+>>>>>>> init commit

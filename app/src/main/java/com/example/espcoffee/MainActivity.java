@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
+    private final String LOG_TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,87 +32,58 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Socket1Power(View view) {
-        String request = "";
-        try {
-            request = sendGetRequest("http://192.168.1.150:80/socket1power");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sendGetRequest("http://192.168.1.150:80/socket1power");
     }
 
     public void Socket2Power(View view) {
-        String request = "";
-        try {
-            request = sendGetRequest("http://192.168.1.150:80/socket2power");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sendGetRequest("http://192.168.1.150:80/socket2power");
     }
 
     public void Socket3Power(View view) {
-        String request = "";
-        try {
-            request = sendGetRequest("http://192.168.1.150:80/socket3power");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sendGetRequest("http://192.168.1.150:80/socket3power");
     }
 
     public void Socket4Power(View view) {
-        String request = "";
-        try {
-            request = sendGetRequest("http://192.168.1.150:80/socket4power");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sendGetRequest("http://192.168.1.150:80/socket4power");
     }
 
     public void Socket5Power(View view) {
-        String request = "";
-        try {
-            request = sendGetRequest("http://192.168.1.150:80/socket5power");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sendGetRequest("http://192.168.1.150:80/socket5power");
     }
 
     public void Socket6Power(View view) {
-        String request = "";
-        try {
-            request = sendGetRequest("http://192.168.1.150:80/socket6power");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sendGetRequest("http://192.168.1.150:80/socket6power");
     }
 
-    ///Для остальных кнопок аналогично
-
-    private String sendGetRequest(String url) throws IOException {
-        GetRequestHelper requestSender = new GetRequestHelper(url);
-        requestSender.execute();
+    private String sendGetRequest(String url) {
+        RequestHelper requestHelper = new RequestHelper(url);
+        requestHelper.execute();
         try {
-            requestSender.get();
+            requestHelper.get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return requestSender.getCompletableHttpBody();
+        return requestHelper.getCompletableHttpBody();
     }
 
-    private class GetRequestHelper extends AsyncTask {
+    private class RequestHelper extends AsyncTask<Void, Void, Void> {
         private final OkHttpClient client = new OkHttpClient();
         private String url;
         private TextView errorView = findViewById(R.id.errorView);
         private String responseBody;
 
-        GetRequestHelper(String url) {
+        RequestHelper(String url) {
             this.url = url;
         }
 
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
-        protected Object doInBackground(Object[] objects) {
+        protected Void doInBackground(Void... voids) {
+            if (!OkHttpCompleteFeature.isComplete.get()) {
+                return null;
+            }
             errorView.setVisibility(View.INVISIBLE);
             Request request = new Request.Builder()
                     .url(url)
@@ -125,15 +98,19 @@ public class MainActivity extends AppCompatActivity {
             } catch (InterruptedException e) {
                 showErrorMessage(String.format("ERROR: forbidden request %s", e.getMessage()));
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(LOG_TAG, e.getMessage(), e);
+            } finally {
+                OkHttpCompleteFeature.isComplete.set(true);
             }
-            return new Object();
+            return null;
         }
 
         private void showErrorMessage(String message) {
-            errorView.setVisibility(View.VISIBLE);
-            errorView.setText(message);
-            errorView.invalidate();
+            runOnUiThread(() -> {
+                errorView.setVisibility(View.VISIBLE);
+                errorView.setText(message);
+                errorView.invalidate();
+            });
         }
 
         String getCompletableHttpBody() {
