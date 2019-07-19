@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.espcoffee.http.OkHttpCompleteFeature;
 
@@ -23,10 +22,12 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     private final String LOG_TAG = this.getClass().getSimpleName();
+    private Bundle mainActivityBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mainActivityBundle = new Bundle();
         setContentView(R.layout.activity_main);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
@@ -68,10 +69,18 @@ public class MainActivity extends AppCompatActivity {
         return requestHelper.getCompletableHttpBody();
     }
 
+    private void showErrorMessage(String message) {
+        runOnUiThread(() -> {
+            ErrorDialogFragment errorDialogFragment = new ErrorDialogFragment(this);
+            mainActivityBundle.putString("message", message);
+            errorDialogFragment.onCreateDialog(mainActivityBundle).show();
+            errorDialogFragment.onDestroy();
+        });
+    }
+
     private class RequestHelper extends AsyncTask<Void, Void, Void> {
         private final OkHttpClient client = new OkHttpClient();
         private String url;
-        private TextView errorView = findViewById(R.id.errorView);
         private String responseBody;
 
         RequestHelper(String url) {
@@ -84,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
             if (!OkHttpCompleteFeature.isComplete.get()) {
                 return null;
             }
-            errorView.setVisibility(View.INVISIBLE);
             Request request = new Request.Builder()
                     .url(url)
                     .build();
@@ -104,15 +112,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
-
-        private void showErrorMessage(String message) {
-            runOnUiThread(() -> {
-                errorView.setVisibility(View.VISIBLE);
-                errorView.setText(message);
-                errorView.invalidate();
-            });
-        }
-
         String getCompletableHttpBody() {
             return responseBody;
         }
