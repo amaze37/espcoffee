@@ -8,24 +8,6 @@
     android:navigationBarColor="@color/navigationBarColor"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/errorView"
-        android:layout_width="322dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        android:text="TextView"
-        android:textColor="#F7F10303"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="HardcodedText"
-        tools:text="ERROR: " />
-
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="156dp"
