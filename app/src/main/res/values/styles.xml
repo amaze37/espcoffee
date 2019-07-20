@@ -9,4 +9,8 @@
         <item name="android:navigationBarColor">@color/navigationBarColor</item>
     </style>
 
+    <style name="AppTheme.Launcher" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splashscreen</item>
+    </style>
+
 </resources>
