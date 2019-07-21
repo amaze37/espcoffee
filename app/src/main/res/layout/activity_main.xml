@@ -1,122 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     android:navigationBarColor="@color/navigationBarColor"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteY="611dp">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="156dp"
-        android:layout_height="156dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="?attr/selectableItemBackground"
-        android:onClick="Socket1Power"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/power" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="156dp"
-        android:layout_height="156dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="?attr/selectableItemBackground"
-        android:onClick="Socket2Power"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cappuccino" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="156dp"
-        android:layout_height="156dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:background="?attr/selectableItemBackground"
-        android:onClick="Socket3Power"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:srcCompat="@drawable/espresso" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:divider="@drawable/separator"
+            android:dividerPadding="3dp"
+            android:onClick="Socket2Power"
+            android:orientation="horizontal"
+            android:showDividers="end">
 
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="156dp"
-        android:layout_height="156dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:background="?attr/selectableItemBackground"
-        android:onClick="Socket4Power"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3"
-        app:srcCompat="@drawable/espressox2" />
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="156dp"
+                android:layout_height="156dp"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="Socket2Power"
+                android:scaleType="fitXY"
+                android:scaleX="1"
+                android:scaleY="1"
+                app:srcCompat="@drawable/cappuccino" />
 
-    <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="156dp"
-        android:layout_height="156dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
-        android:background="?attr/selectableItemBackground"
-        android:onClick="Socket5Power"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
-        app:srcCompat="@drawable/americano" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/imageButton6"
-        android:layout_width="156dp"
-        android:layout_height="156dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
-        android:background="?attr/selectableItemBackground"
-        android:onClick="Socket6Power"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton5"
-        app:srcCompat="@drawable/americanox2" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="52dp"
+                    android:text="Капучино"
+                    android:textColor="@color/nameCoffee"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="328dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="392dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/coffee_slider_full" />
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="148dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:text="вкусненько и с молоком, хых"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="328dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="188dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/coffee_slider_full" />
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="5dp"
-        android:layout_height="565dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/errorView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121"
-        app:srcCompat="@drawable/coffee_slider_full_1" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="Socket3Power"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="156dp"
+                android:layout_height="156dp"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="Socket3Power"
+                android:scaleType="fitXY"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                app:srcCompat="@drawable/espresso" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="52dp"
+                    android:text="Эспрессо"
+                    android:textColor="@color/nameCoffee"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="148dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:text="просто микро чашка для микро человека"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="Socket4Power"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="156dp"
+                android:layout_height="156dp"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="Socket4Power"
+                android:scaleType="fitXY"
+                android:scaleX="1"
+                android:scaleY="1"
+                app:srcCompat="@drawable/espressox2" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="52dp"
+                    android:text="Двойной эспрессо"
+                    android:textColor="@color/nameCoffee"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="148dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:text="уже чуть побольше, но все равно мало"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="Socket5Power"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="156dp"
+                android:layout_height="156dp"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="Socket5Power"
+                android:scaleType="fitXY"
+                android:scaleX="0.9"
+                android:scaleY="0.9"
+                app:srcCompat="@drawable/americano" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="52dp"
+                    android:text="Американо"
+                    android:textColor="@color/nameCoffee"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="148dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:text="просто чашка кофе"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="Socket6Power"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="156dp"
+                android:layout_height="156dp"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="Socket6Power"
+                android:scaleType="fitXY"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                app:srcCompat="@drawable/americanox2" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="56dp"
+                    android:text="Двойной американо"
+                    android:textColor="@color/nameCoffee"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="156dp"
+                    android:layout_height="53dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="самая популярная кнопка в самом неудобном месте"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.724" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
