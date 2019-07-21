@@ -60,13 +60,6 @@ public class MainActivity extends AppCompatActivity {
     private String sendGetRequest(String url) {
         RequestHelper requestHelper = new RequestHelper(url);
         requestHelper.execute();
-        try {
-            requestHelper.get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return requestHelper.getCompletableHttpBody();
     }
 
