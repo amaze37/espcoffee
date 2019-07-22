@@ -6,23 +6,27 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:screenOrientation="locked"
         android:allowBackup="true"
         android:icon="@drawable/icon_app"
         android:label="espcoffee"
         android:roundIcon="@drawable/icon_app"
+        android:screenOrientation="locked"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".MainActivity" android:theme="@style/AppTheme.Launcher">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application
->
+        <activity
+            android:name=".BeverageActivity"
+            android:label="@string/beverage_label"
+            android:theme="@style/AppTheme"></activity>
+    </application>
 
 </manifest>

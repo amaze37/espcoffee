@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cappucino">Капучино</string>
+    <string name="cappucino_info">вкусненько и с молоком, хых</string>
+    <string name="espresso">Эспрессо</string>
+    <string name="espresso_info">просто микро чашка для микро человека</string>
+    <string name="espresso2x">Двойной эспрессо</string>
+    <string name="espresso2x_info">уже чуть побольше, но все равно мало</string>
+    <string name="americano">Американо</string>
+    <string name="americano_info">просто чашка кофе</string>
+    <string name="americanox2">Двойной американо</string>
+    <string name="americanox2_info">самая популярная кнопка в самом неудобном месте</string>
+    <string name="start">Приготовить</string>
+    <string name="infoCoffee">Здесь будет небольшой текст с информацией о выбранном кофе.</string>
+    <string name="beverage_label">Кофе</string>
+</resources>

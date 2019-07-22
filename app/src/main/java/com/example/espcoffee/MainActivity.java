@@ -3,6 +3,7 @@ package com.example.espcoffee;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -31,6 +32,23 @@ public class MainActivity extends AppCompatActivity {
         mainActivityBundle = new Bundle();
         setContentView(R.layout.activity_main);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        /*      для запуска анимации
+        final ImageView animImageView = (ImageView) findViewById(R.id.imageView3); id элемента
+        animImageView.setBackgroundResource(R.drawable.coffee_bean);
+        animImageView.post(new Runnable() {
+            @Override
+            public void run() {
+                AnimationDrawable frameAnimation =
+                        (AnimationDrawable) animImageView.getBackground();
+                frameAnimation.start();
+            }
+        });
+*/
+    }
+
+    public void beverageActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
+        startActivity(intent);
     }
 
     public void Socket1Power(View view) {

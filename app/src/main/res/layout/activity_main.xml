@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,8 +9,6 @@
     android:navigationBarColor="@color/navigationBarColor"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="611dp">
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,18 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
-            android:divider="@drawable/separator"
-            android:dividerPadding="3dp"
-            android:onClick="Socket2Power"
-            android:orientation="horizontal"
-            android:showDividers="end">
+            android:onClick="beverageActivity"
+            android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton2"
+            <ImageView
+                android:id="@+id/cappucino_icon"
                 android:layout_width="156dp"
                 android:layout_height="156dp"
-                android:background="?attr/selectableItemBackground"
-                android:onClick="Socket2Power"
+                android:backgroundTint="#00FFFFFF"
                 android:scaleType="fitXY"
                 android:scaleX="1"
                 android:scaleY="1"
@@ -46,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="52dp"
-                    android:text="Капучино"
+                    android:text="@string/cappucino"
                     android:textColor="@color/nameCoffee"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -57,9 +52,22 @@
                     android:layout_width="148dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="8dp"
-                    android:text="вкусненько и с молоком, хых"
+                    android:text="@string/cappucino_info"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <ImageView
+                    android:id="@+id/arrow"
+                    android:layout_width="18dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icn_arrow" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
@@ -76,12 +84,10 @@
             android:onClick="Socket3Power"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton3"
+            <ImageView
+                android:id="@+id/espresso_icon"
                 android:layout_width="156dp"
                 android:layout_height="156dp"
-                android:background="?attr/selectableItemBackground"
-                android:onClick="Socket3Power"
                 android:scaleType="fitXY"
                 android:scaleX="1.2"
                 android:scaleY="1.2"
@@ -97,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="52dp"
-                    android:text="Эспрессо"
+                    android:text="@string/espresso"
                     android:textColor="@color/nameCoffee"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -108,9 +114,21 @@
                     android:layout_width="148dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="8dp"
-                    android:text="просто микро чашка для микро человека"
+                    android:text="@string/espresso_info"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                <ImageView
+                    android:id="@+id/arrow2"
+                    android:layout_width="18dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icn_arrow" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
@@ -127,12 +145,10 @@
             android:onClick="Socket4Power"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton4"
+            <ImageView
+                android:id="@+id/espressox2_icon"
                 android:layout_width="156dp"
                 android:layout_height="156dp"
-                android:background="?attr/selectableItemBackground"
-                android:onClick="Socket4Power"
                 android:scaleType="fitXY"
                 android:scaleX="1"
                 android:scaleY="1"
@@ -148,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="52dp"
-                    android:text="Двойной эспрессо"
+                    android:text="@string/espresso2x"
                     android:textColor="@color/nameCoffee"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -159,9 +175,21 @@
                     android:layout_width="148dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="8dp"
-                    android:text="уже чуть побольше, но все равно мало"
+                    android:text="@string/espresso2x_info"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+                <ImageView
+                    android:id="@+id/arrow3"
+                    android:layout_width="18dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icn_arrow" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
@@ -178,12 +206,10 @@
             android:onClick="Socket5Power"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton5"
+            <ImageView
+                android:id="@+id/americano_icon"
                 android:layout_width="156dp"
                 android:layout_height="156dp"
-                android:background="?attr/selectableItemBackground"
-                android:onClick="Socket5Power"
                 android:scaleType="fitXY"
                 android:scaleX="0.9"
                 android:scaleY="0.9"
@@ -199,7 +225,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="52dp"
-                    android:text="Американо"
+                    android:text="@string/americano"
                     android:textColor="@color/nameCoffee"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -210,9 +236,21 @@
                     android:layout_width="148dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="8dp"
-                    android:text="просто чашка кофе"
+                    android:text="@string/americano_info"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                <ImageView
+                    android:id="@+id/arrow4"
+                    android:layout_width="18dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icn_arrow" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
@@ -229,12 +267,10 @@
             android:onClick="Socket6Power"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton6"
+            <ImageView
+                android:id="@+id/americanox2_icon"
                 android:layout_width="156dp"
                 android:layout_height="156dp"
-                android:background="?attr/selectableItemBackground"
-                android:onClick="Socket6Power"
                 android:scaleType="fitXY"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
@@ -249,8 +285,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="56dp"
-                    android:text="Двойной американо"
+                    android:layout_marginTop="52dp"
+                    android:text="@string/americanox2"
                     android:textColor="@color/nameCoffee"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -261,13 +297,23 @@
                     android:layout_width="156dp"
                     android:layout_height="53dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="самая популярная кнопка в самом неудобном месте"
+                    android:layout_marginBottom="32dp"
+                    android:text="@string/americanox2_info"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+                <ImageView
+                    android:id="@+id/arrow5"
+                    android:layout_width="18dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.724" />
+                    app:srcCompat="@drawable/icn_arrow" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </LinearLayout>
