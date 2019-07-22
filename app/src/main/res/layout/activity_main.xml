@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
-            android:onClick="beverageActivity"
+            android:onClick="socket2Power"
             android:orientation="horizontal">
 
             <ImageView
@@ -28,6 +28,8 @@
                 android:backgroundTint="#00FFFFFF"
                 android:scaleType="fitXY"
                 android:scaleX="1"
+
+
                 android:scaleY="1"
                 app:srcCompat="@drawable/cappuccino" />
 
@@ -72,16 +74,11 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
-            android:onClick="Socket3Power"
+            android:onClick="socket3Power"
             android:orientation="horizontal">
 
             <ImageView
@@ -132,17 +129,11 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
-            android:onClick="Socket4Power"
+            android:onClick="socket4Power"
             android:orientation="horizontal">
 
             <ImageView
@@ -152,7 +143,7 @@
                 android:scaleType="fitXY"
                 android:scaleX="1"
                 android:scaleY="1"
-                app:srcCompat="@drawable/espressox2" />
+                app:srcCompat="@drawable/espresso2x" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -193,17 +184,11 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-        <View
-            android:id="@+id/view3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
-            android:onClick="Socket5Power"
+            android:onClick="socket5Power"
             android:orientation="horizontal">
 
             <ImageView
@@ -254,17 +239,11 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-        <View
-            android:id="@+id/view4"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
-            android:onClick="Socket6Power"
+            android:onClick="socket6Power"
             android:orientation="horizontal">
 
             <ImageView
@@ -274,7 +253,7 @@
                 android:scaleType="fitXY"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
-                app:srcCompat="@drawable/americanox2" />
+                app:srcCompat="@drawable/americano2x" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -286,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="52dp"
-                    android:text="@string/americanox2"
+                    android:text="@string/americano2x"
                     android:textColor="@color/nameCoffee"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -298,7 +277,7 @@
                     android:layout_height="53dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="32dp"
-                    android:text="@string/americanox2_info"
+                    android:text="@string/americano2x_info"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -316,6 +295,29 @@
                     app:srcCompat="@drawable/icn_arrow" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
     </LinearLayout>
 
 </ScrollView>
