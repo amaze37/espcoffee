@@ -31,54 +31,64 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mainActivityBundle = new Bundle();
         setContentView(R.layout.activity_main);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         /*      для запуска анимации
         final ImageView animImageView = (ImageView) findViewById(R.id.imageView3); id элемента
         animImageView.setBackgroundResource(R.drawable.coffee_bean);
-        animImageView.post(new Runnable() {
-            @Override
-            public void run() {
-                AnimationDrawable frameAnimation =
-                        (AnimationDrawable) animImageView.getBackground();
-                frameAnimation.start();
-            }
-        });
+        animImageView.post(((AnimationDrawable) animImageView.getBackground())::start);
 */
     }
 
-    public void beverageActivity(View view) {
-        Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        startActivity(intent);
-    }
-
-    public void Socket1Power(View view) {
+    @Deprecated
+    public void socket1Power(View view) {
         sendGetRequest("http://192.168.1.150:80/socket1power");
     }
 
-    public void Socket2Power(View view) {
-        sendGetRequest("http://192.168.1.150:80/socket2power");
+    public void socket2Power(View view) {
+        Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
+        createBundle(R.drawable.cappuccino, R.string.infoCoffee, R.string.cappucino, "http://192.168.1.150:80/socket2power");
+        intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
+        startActivity(intent);
     }
 
-    public void Socket3Power(View view) {
-        sendGetRequest("http://192.168.1.150:80/socket3power");
+    public void socket3Power(View view) {
+        Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
+        createBundle(R.drawable.espresso, R.string.infoCoffee, R.string.espresso, "http://192.168.1.150:80/socket3power");
+        intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
+        startActivity(intent);
     }
 
-    public void Socket4Power(View view) {
-        sendGetRequest("http://192.168.1.150:80/socket4power");
+    public void socket4Power(View view) {
+        Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
+        createBundle(R.drawable.espresso2x, R.string.infoCoffee, R.string.espresso2x, "http://192.168.1.150:80/socket4power");
+        intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
+        startActivity(intent);
     }
 
-    public void Socket5Power(View view) {
-        sendGetRequest("http://192.168.1.150:80/socket5power");
+    public void socket5Power(View view) {
+        Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
+        createBundle(R.drawable.americano, R.string.infoCoffee, R.string.americano, "http://192.168.1.150:80/socket5power");
+        intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
+        startActivity(intent);
     }
 
-    public void Socket6Power(View view) {
-        sendGetRequest("http://192.168.1.150:80/socket6power");
+    public void socket6Power(View view) {
+        Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
+        createBundle(R.drawable.americano2x, R.string.infoCoffee, R.string.americano2x, "http://192.168.1.150:80/socket6power");
+        intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
+        startActivity(intent);
     }
 
-    private String sendGetRequest(String url) {
+    public String sendGetRequest(String url) {
         RequestHelper requestHelper = new RequestHelper(url);
         requestHelper.execute();
         return requestHelper.getCompletableHttpBody();
+    }
+
+    private void createBundle(int coffeeImageId, int textId, int titleId, String url) {
+        mainActivityBundle.putInt("coffeeImageId", coffeeImageId);
+        mainActivityBundle.putInt("textId", textId);
+        mainActivityBundle.putInt("titleId", titleId);
+        mainActivityBundle.putString("url", url);
     }
 
     private void showErrorMessage(String message) {

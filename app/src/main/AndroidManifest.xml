@@ -26,7 +26,7 @@
         <activity
             android:name=".BeverageActivity"
             android:label="@string/beverage_label"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

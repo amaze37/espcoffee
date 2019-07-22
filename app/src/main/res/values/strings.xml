@@ -8,8 +8,8 @@
     <string name="espresso2x_info">already a little more, but still not enough</string>
     <string name="americano">Americano</string>
     <string name="americano_info">just a cup of coffee</string>
-    <string name="americanox2">Double americano</string>
-    <string name="americanox2_info">the most popular button in the most inconvenient place</string>
+    <string name="americano2x">Double americano</string>
+    <string name="americano2x_info">the most popular button in the most inconvenient place</string>
     <string name="start">Start</string>
     <string name="infoCoffee">Здесь будет небольшой текст с информацией о выбранном кофе.</string>
     <string name="beverage_label">Coffee</string>
