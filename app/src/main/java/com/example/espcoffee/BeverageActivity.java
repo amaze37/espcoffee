@@ -38,4 +38,6 @@ public class BeverageActivity extends MainActivity {
     public void startDispensing(View view) {
         sendGetRequest(url);
     }
+
+    public void onBackPressed(View view) { super.onBackPressed(); }
 }
