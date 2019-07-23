@@ -14,9 +14,10 @@ public class BeverageActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beverage_dispensing);
         Bundle bundle = getIntent().getBundleExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE);
-        if (bundle.containsKey("titleId")) {
-            int titleId = bundle.getInt("titleId");
-            setTitle(titleId);
+        if (bundle.containsKey("nameId")) {
+            int titleId = bundle.getInt("nameId");
+            TextView textView = findViewById(R.id.coffeeName);
+            textView.setText(titleId);
         }
         if (bundle.containsKey("coffeeImageId")) {
             int coffeeImage = bundle.getInt("coffeeImageId");

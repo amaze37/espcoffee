@@ -1,17 +1,22 @@
 package com.example.espcoffee;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.espcoffee.http.OkHttpCompleteFeature;
+import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -21,21 +26,72 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
     private final String LOG_TAG = this.getClass().getSimpleName();
     private Bundle mainActivityBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         mainActivityBundle = new Bundle();
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         /*      для запуска анимации
         final ImageView animImageView = (ImageView) findViewById(R.id.imageView3); id элемента
         animImageView.setBackgroundResource(R.drawable.coffee_bean);
         animImageView.post(((AnimationDrawable) animImageView.getBackground())::start);
+
 */
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_home) {
+            sendGetRequest("http://192.168.1.150:80/socket1power");
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_tools) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Deprecated
@@ -45,35 +101,35 @@ public class MainActivity extends AppCompatActivity {
 
     public void socket2Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.cappuccino, R.string.infoCoffee, R.string.cappucino, "http://192.168.1.150:80/socket2power");
+        createBundle(R.drawable.cappuccino, R.string.cappucino_beverage_info, R.string.cappucino, "http://192.168.1.150:80/socket2power");
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket3Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.espresso, R.string.infoCoffee, R.string.espresso, "http://192.168.1.150:80/socket3power");
+        createBundle(R.drawable.espresso, R.string.espresso_beverage_info, R.string.espresso, "http://192.168.1.150:80/socket3power");
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket4Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.espresso2x, R.string.infoCoffee, R.string.espresso2x, "http://192.168.1.150:80/socket4power");
+        createBundle(R.drawable.espresso2x, R.string.espresso2x_beverage_info, R.string.espresso2x, "http://192.168.1.150:80/socket4power");
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket5Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.americano, R.string.infoCoffee, R.string.americano, "http://192.168.1.150:80/socket5power");
+        createBundle(R.drawable.americano, R.string.americano_beverage_info, R.string.americano, "http://192.168.1.150:80/socket5power");
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket6Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.americano2x, R.string.infoCoffee, R.string.americano2x, "http://192.168.1.150:80/socket6power");
+        createBundle(R.drawable.americano2x, R.string.americano2x_beverage_info, R.string.americano2x, "http://192.168.1.150:80/socket6power");
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
@@ -84,10 +140,10 @@ public class MainActivity extends AppCompatActivity {
         return requestHelper.getCompletableHttpBody();
     }
 
-    private void createBundle(int coffeeImageId, int textId, int titleId, String url) {
+    private void createBundle(int coffeeImageId, int textId, int nameId, String url) {
         mainActivityBundle.putInt("coffeeImageId", coffeeImageId);
         mainActivityBundle.putInt("textId", textId);
-        mainActivityBundle.putInt("titleId", titleId);
+        mainActivityBundle.putInt("nameId", nameId);
         mainActivityBundle.putString("url", url);
     }
 

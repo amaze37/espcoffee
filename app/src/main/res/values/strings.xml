@@ -11,6 +11,24 @@
     <string name="americano2x">Double americano</string>
     <string name="americano2x_info">the most popular button in the most inconvenient place</string>
     <string name="start">Start</string>
-    <string name="infoCoffee">Здесь будет небольшой текст с информацией о выбранном кофе.</string>
+    <string name="cappucino_beverage_info">One portion of espresso with an equal amount of milk with milk foam of maximum volume, 80 ml.</string>
+    <string name="espresso_beverage_info">Coffee according to a true Italian recipe, served in small cups, 40 ml.</string>
+    <string name="espresso2x_beverage_info">Italian espresso with 2 cups or a double portion of drink, 85ml</string>
+    <string name="americano_beverage_info">Coffee according to a special recipe, brewed at a lower pressure to get a delicate aroma and taste, for coffee lovers using the drip method, ?ml.</string>
+    <string name="americano2x_beverage_info">Coffee according to a special recipe, brewed at a lower pressure to get a delicate aroma and taste, for coffee lovers using the drip method, ??ml.</string>
     <string name="beverage_label">Coffee</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">WiFi включен</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
 </resources>
