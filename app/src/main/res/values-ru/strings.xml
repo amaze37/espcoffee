@@ -17,4 +17,7 @@
     <string name="americano_beverage_info">Кофе по специальному рецепту, завариваемый при более низком давлении для получения тонкого аромата и вкуса, для любителей приготовления кофе капельным методом, ?мл.</string>
     <string name="americano2x_beverage_info">Кофе по специальному рецепту, завариваемый при более низком давлении для получения тонкого аромата и вкуса, для любителей приготовления кофе капельным методом, ??мл.</string>
     <string name="beverage_label">Кофе</string>
+    <string name="menu_home">Вкл./выкл.</string>
+    <string name="nav_header_wifi_connected">Соединен</string>
+    <string name="nav_header_wifi_no_connect">No соединения</string>
 </resources>
