@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+import com.example.espcoffee.tools.CustomProgressBar;
 
 public class BeverageActivity extends MainActivity {
     private String url;
@@ -34,7 +34,8 @@ public class BeverageActivity extends MainActivity {
             TextView textView = findViewById(R.id.beverageCoffeeText);
             textView.setText(textId);
         }
-        ProgressBar progress = (ProgressBar) findViewById(R.id.progressBar);
+        CustomProgressBar progress = findViewById(R.id.progressBar);
+        progress.setTextView(findViewById(R.id.percent));
         ObjectAnimator anim = ObjectAnimator.ofInt(progress, "progress", 0, 100);
         anim.setDuration(10000);
         anim.start();
