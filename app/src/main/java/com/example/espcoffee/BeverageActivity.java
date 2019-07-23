@@ -1,9 +1,11 @@
 package com.example.espcoffee;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class BeverageActivity extends MainActivity {
@@ -32,6 +34,10 @@ public class BeverageActivity extends MainActivity {
             TextView textView = findViewById(R.id.beverageCoffeeText);
             textView.setText(textId);
         }
+        ProgressBar progress = (ProgressBar) findViewById(R.id.progressBar);
+        ObjectAnimator anim = ObjectAnimator.ofInt(progress, "progress", 0, 100);
+        anim.setDuration(10000);
+        anim.start();
     }
 
 
