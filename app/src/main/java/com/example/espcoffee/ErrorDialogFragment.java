@@ -1,5 +1,6 @@
 package com.example.espcoffee;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,8 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+@SuppressLint("ValidFragment")
 public class ErrorDialogFragment extends DialogFragment {
-    Activity showingActivity;
+    private Activity showingActivity;
 
     public ErrorDialogFragment(Activity showingActivity) {
         this.showingActivity = showingActivity;
