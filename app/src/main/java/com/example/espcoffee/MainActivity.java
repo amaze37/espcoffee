@@ -1,31 +1,19 @@
 package com.example.espcoffee;
 
-import androidx.annotation.RequiresApi;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-
-import com.example.espcoffee.http.OkHttpCompleteFeature;
+import com.example.espcoffee.http.RequestHelper;
 import com.google.android.material.navigation.NavigationView;
 
-import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private final String LOG_TAG = this.getClass().getSimpleName();
     private Bundle mainActivityBundle;
 
@@ -83,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void socket3Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.espresso, R.string.espresso_beverage_info, R.string.espresso, "http://192.168.1.150:80/socket3power",1000);
+        createBundle(R.drawable.espresso, R.string.espresso_beverage_info, R.string.espresso, "http://192.168.1.150:80/socket3power", 1000);
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
@@ -110,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public String sendGetRequest(String url) {
-        RequestHelper requestHelper = new RequestHelper(url);
+        RequestHelper requestHelper = new RequestHelper(this, url);
         requestHelper.execute();
         return requestHelper.getCompletableHttpBody();
     }
@@ -121,54 +109,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mainActivityBundle.putInt("nameId", nameId);
         mainActivityBundle.putString("url", url);
         mainActivityBundle.putInt("percent", percent);
-    }
-
-    private void showErrorMessage(String message) {
-        runOnUiThread(() -> {
-            ErrorDialogFragment errorDialogFragment = new ErrorDialogFragment(this);
-            mainActivityBundle.putString("message", message);
-            errorDialogFragment.onCreateDialog(mainActivityBundle).show();
-            errorDialogFragment.onDestroy();
-        });
-    }
-
-    private class RequestHelper extends AsyncTask<Void, Void, Void> {
-        private final OkHttpClient client = new OkHttpClient();
-        private String url;
-        private String responseBody;
-
-        RequestHelper(String url) {
-            this.url = url;
-        }
-
-        @RequiresApi(api = Build.VERSION_CODES.N)
-        @Override
-        protected Void doInBackground(Void... voids) {
-            if (!OkHttpCompleteFeature.isComplete.get()) {
-                return null;
-            }
-            Request request = new Request.Builder()
-                    .url(url)
-                    .build();
-            OkHttpCompleteFeature callback = new OkHttpCompleteFeature();
-            client.newCall(request).enqueue(callback);
-            CompletableFuture<Response> future = callback.getFuture().thenApply(response -> response);
-            try {
-                responseBody = future.get().body().string();
-            } catch (ExecutionException e) {
-                showErrorMessage(String.format("Error: fail request %s", e.getMessage()));
-            } catch (InterruptedException e) {
-                showErrorMessage(String.format("ERROR: forbidden request %s", e.getMessage()));
-            } catch (IOException e) {
-                Log.e(LOG_TAG, e.getMessage(), e);
-            } finally {
-                OkHttpCompleteFeature.isComplete.set(true);
-            }
-            return null;
-        }
-        String getCompletableHttpBody() {
-            return responseBody;
-        }
     }
 }
 
