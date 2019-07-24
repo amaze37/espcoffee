@@ -14,8 +14,8 @@
     </style>
 
     <style name="AppTheme.Launcher" parent="Theme.AppCompat">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:windowBackground">@drawable/background_splashscreen</item>
-        <item name="android:navigationBarColor">@color/navigationBarColorSplash</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
