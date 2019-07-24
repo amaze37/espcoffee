@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_power) {
             sendGetRequest("http://192.168.1.150:80/socket1power");
         } else if (id == R.id.nav_refresh) {
-
+            sendGetRequest("http://192.168.1.150:80/");
         }
 
         return true;
