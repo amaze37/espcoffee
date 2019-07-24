@@ -39,7 +39,7 @@
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:text="@string/nav_header_wifi_connected"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorText"
+            android:textColor="@color/White"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />

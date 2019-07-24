@@ -4,7 +4,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
@@ -61,22 +60,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_power) {
             sendGetRequest("http://192.168.1.150:80/socket1power");
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_refresh) {
 
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -87,35 +76,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void socket2Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.cappuccino, R.string.cappucino_beverage_info, R.string.cappucino, "http://192.168.1.150:80/socket2power");
+        createBundle(R.drawable.cappuccino, R.string.cappucino_beverage_info, R.string.cappucino, "http://192.168.1.150:80/socket2power", 100);
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket3Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.espresso, R.string.espresso_beverage_info, R.string.espresso, "http://192.168.1.150:80/socket3power");
+        createBundle(R.drawable.espresso, R.string.espresso_beverage_info, R.string.espresso, "http://192.168.1.150:80/socket3power",1000);
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket4Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.espresso2x, R.string.espresso2x_beverage_info, R.string.espresso2x, "http://192.168.1.150:80/socket4power");
+        createBundle(R.drawable.espresso2x, R.string.espresso2x_beverage_info, R.string.espresso2x, "http://192.168.1.150:80/socket4power", 15000);
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket5Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.americano, R.string.americano_beverage_info, R.string.americano, "http://192.168.1.150:80/socket5power");
+        createBundle(R.drawable.americano, R.string.americano_beverage_info, R.string.americano, "http://192.168.1.150:80/socket5power", 20000);
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket6Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.americano2x, R.string.americano2x_beverage_info, R.string.americano2x, "http://192.168.1.150:80/socket6power");
+        createBundle(R.drawable.americano2x, R.string.americano2x_beverage_info, R.string.americano2x, "http://192.168.1.150:80/socket6power", 30000);
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
@@ -126,11 +115,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return requestHelper.getCompletableHttpBody();
     }
 
-    private void createBundle(int coffeeImageId, int textId, int nameId, String url) {
+    private void createBundle(int coffeeImageId, int textId, int nameId, String url, int percent) {
         mainActivityBundle.putInt("coffeeImageId", coffeeImageId);
         mainActivityBundle.putInt("textId", textId);
         mainActivityBundle.putInt("nameId", nameId);
         mainActivityBundle.putString("url", url);
+        mainActivityBundle.putInt("percent", percent);
     }
 
     private void showErrorMessage(String message) {
