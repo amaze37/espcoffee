@@ -13,6 +13,7 @@ import com.example.espcoffee.ErrorDialogFragment;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -22,11 +23,16 @@ public class RequestHelper extends AsyncTask<Integer, String, Integer> {
     private final String LOG_TAG = "AsyncRequest";
     private Activity callingActivity;
     private Bundle bundle;
-    private final OkHttpClient client = new OkHttpClient();
+    private final OkHttpClient client;
     private String url;
     private String responseBody;
 
     public RequestHelper(Activity activity, String url) {
+        client = new OkHttpClient.Builder()
+                .connectTimeout(3, TimeUnit.SECONDS)
+                .writeTimeout(3, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .build();
         bundle = new Bundle();
         this.callingActivity = activity;
         this.url = url;
