@@ -15,7 +15,7 @@ import com.example.espcoffee.tools.CustomProgressBar;
 public class BeverageActivity extends MainActivity {
     private String url;
     private Integer percent;
-    private Boolean isStarted=false;
+    private Boolean isStarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class BeverageActivity extends MainActivity {
         ObjectAnimator anim = ObjectAnimator.ofInt(progress, "progress", 0, 100);
         anim.setDuration(percent);
 
-        if(!isStarted){
+        if (!isStarted) {
             sendGetRequest(url);
             coffeeImageView.setVisibility(View.INVISIBLE);
             progress.setVisibility(View.VISIBLE);
@@ -64,9 +64,9 @@ public class BeverageActivity extends MainActivity {
             progress.setTextView(findViewById(R.id.percent));
             anim.start();
             beverageStart.setText(R.string.stop);
-            isStarted=true;
-        }
-        else{
+            beverageStart.setBackgroundColor(getResources().getColor(R.color.Red));
+            isStarted = true;
+        } else {
             sendGetRequest(url);
             coffeeImageView.setVisibility(View.VISIBLE);
             progress.setVisibility(View.INVISIBLE);
@@ -74,7 +74,8 @@ public class BeverageActivity extends MainActivity {
             progress.setTextView(findViewById(R.id.percent));
             anim.cancel();
             beverageStart.setText(R.string.start);
-            isStarted=false;
+            beverageStart.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            isStarted = false;
         }
     }
 

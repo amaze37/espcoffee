@@ -68,7 +68,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="#0085C2"
+        android:background="@color/colorPrimary"
         android:onClick="startDispensing"
         android:text="@string/start"
         android:textColor="@color/White"
