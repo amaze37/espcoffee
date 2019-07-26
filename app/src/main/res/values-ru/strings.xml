@@ -21,6 +21,8 @@
     <string name="navigation_drawer_close">Закрыть дравер</string>
     <string name="nav_header_wifi_connected">Соединен</string>
     <string name="nav_header_wifi_no_connect">Нет соединения</string>
+    <string name="error_no_connection_coffee">Ошибка: Нет соединения с микроконтроллером</string>
+    <string name="error_unknown">Ошибка: Неизвестная ошибка</string>
 
     <string name="menu_power">Вкл./выкл.</string>
     <string name="menu_refresh">Обновить</string>
