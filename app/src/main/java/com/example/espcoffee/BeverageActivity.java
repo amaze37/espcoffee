@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.espcoffee.tools.CustomProgressBar;
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 public class BeverageActivity extends MainActivity {
     private String url;
@@ -81,11 +80,5 @@ public class BeverageActivity extends MainActivity {
 
     public void onBackPressed(View view) {
         super.onBackPressed();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Crouton.cancelAllCroutons();
     }
 }

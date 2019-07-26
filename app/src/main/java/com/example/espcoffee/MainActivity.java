@@ -12,9 +12,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.espcoffee.http.RequestHelper;
 import com.google.android.material.navigation.NavigationView;
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private final String LOG_TAG = this.getClass().getSimpleName();
     private Bundle mainActivityBundle;
 
     @Override
@@ -25,6 +25,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        /*      для запуска анимации
+        final ImageView animImageView = (ImageView) findViewById(R.id.imageView3); id элемента
+        animImageView.setBackgroundResource(R.drawable.coffee_bean);
+        animImageView.post(((AnimationDrawable) animImageView.getBackground())::start);
+
+*/
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -102,12 +109,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mainActivityBundle.putInt("nameId", nameId);
         mainActivityBundle.putString("url", url);
         mainActivityBundle.putInt("percent", percent);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Crouton.cancelAllCroutons();
     }
 }
 
