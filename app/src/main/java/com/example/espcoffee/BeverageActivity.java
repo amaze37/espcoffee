@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 import com.example.espcoffee.tools.CustomProgressBar;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-
 public class BeverageActivity extends MainActivity {
     private String url;
     private Integer percent;
@@ -83,11 +81,5 @@ public class BeverageActivity extends MainActivity {
 
     public void onBackPressed(View view) {
         super.onBackPressed();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Crouton.cancelAllCroutons();
     }
 }
