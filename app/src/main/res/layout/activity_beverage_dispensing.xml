@@ -7,15 +7,15 @@
 
     <TextView
         android:id="@+id/coffeeName"
-        android:layout_width="191dp"
-        android:layout_height="35dp"
+        android:layout_width="208dp"
+        android:layout_height="38dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="Двойной американо"
         android:textColor="@color/nameCoffee"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -28,7 +28,7 @@
         android:layout_height="42dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="?attr/selectableItemBackground"
+        android:backgroundTint="#00FFFFFF"
         android:onClick="onBackPressed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +52,7 @@
         android:layout_width="329dp"
         android:layout_height="291dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="68dp"
         android:layout_marginEnd="8dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,9 +62,10 @@
 
     <Button
         android:id="@+id/beverageStart"
-        android:layout_width="124dp"
-        android:layout_height="50dp"
+        android:layout_width="299dp"
+        android:layout_height="73dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="#0085C2"
@@ -73,7 +74,8 @@
         android:textColor="@color/White"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/beverageCoffeeImage" />
 
     <com.example.espcoffee.tools.CustomProgressBar
         android:id="@+id/progressBar"
@@ -97,6 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="@+id/progressBar"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
