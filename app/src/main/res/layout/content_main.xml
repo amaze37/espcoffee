@@ -16,12 +16,14 @@
         tools:context=".MainActivity"
         tools:layout_editor_absoluteY="611dp">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/mainContentLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/mainLinerLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
@@ -30,6 +32,7 @@
 
                 <ImageView
                     android:id="@+id/cappucino_icon"
+                    android:contentDescription="@string/cappucino"
                     android:layout_width="156dp"
                     android:layout_height="156dp"
                     android:backgroundTint="#00FFFFFF"
@@ -67,6 +70,7 @@
 
                     <ImageView
                         android:id="@+id/arrow"
+                        android:contentDescription="@string/arrow"
                         android:layout_width="18dp"
                         android:layout_height="28dp"
                         android:layout_marginTop="8dp"
@@ -83,11 +87,14 @@
 
             <View
                 android:id="@+id/view"
+                android:layout_above="@+id/mainLinerLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
+                android:id="@+id/mainLinerLayout2"
+                android:layout_below="@id/mainLinerLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
@@ -96,6 +103,7 @@
 
                 <ImageView
                     android:id="@+id/espresso_icon"
+                    android:contentDescription="@string/espresso"
                     android:layout_width="156dp"
                     android:layout_height="156dp"
                     android:scaleType="fitXY"
@@ -130,6 +138,7 @@
 
                     <ImageView
                         android:id="@+id/arrow2"
+                        android:contentDescription="@string/arrow"
                         android:layout_width="18dp"
                         android:layout_height="28dp"
                         android:layout_marginTop="8dp"
@@ -144,11 +153,14 @@
 
             <View
                 android:id="@+id/view2"
+                android:layout_above="@+id/mainLinerLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
+                android:id="@+id/mainLinerLayout3"
+                android:layout_below="@id/mainLinerLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
@@ -157,6 +169,7 @@
 
                 <ImageView
                     android:id="@+id/espressox2_icon"
+                    android:contentDescription="@string/espresso2x"
                     android:layout_width="156dp"
                     android:layout_height="156dp"
                     android:scaleType="fitXY"
@@ -191,6 +204,7 @@
 
                     <ImageView
                         android:id="@+id/arrow3"
+                        android:contentDescription="@string/arrow"
                         android:layout_width="18dp"
                         android:layout_height="28dp"
                         android:layout_marginTop="8dp"
@@ -205,11 +219,14 @@
 
             <View
                 android:id="@+id/view3"
+                android:layout_above="@+id/mainLinerLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
+                android:id="@+id/mainLinerLayout4"
+                android:layout_below="@id/mainLinerLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
@@ -218,6 +235,7 @@
 
                 <ImageView
                     android:id="@+id/americano_icon"
+                    android:contentDescription="@string/americano"
                     android:layout_width="156dp"
                     android:layout_height="156dp"
                     android:scaleType="fitXY"
@@ -252,6 +270,7 @@
 
                     <ImageView
                         android:id="@+id/arrow4"
+                        android:contentDescription="@string/arrow"
                         android:layout_width="18dp"
                         android:layout_height="28dp"
                         android:layout_marginTop="8dp"
@@ -266,11 +285,14 @@
 
             <View
                 android:id="@+id/view4"
+                android:layout_above="@+id/mainLinerLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
+                android:id="@+id/mainLinerLayout5"
+                android:layout_below="@id/mainLinerLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
@@ -279,6 +301,7 @@
 
                 <ImageView
                     android:id="@+id/americanox2_icon"
+                    android:contentDescription="@string/americano2x"
                     android:layout_width="156dp"
                     android:layout_height="156dp"
                     android:scaleType="fitXY"
@@ -315,6 +338,7 @@
 
                     <ImageView
                         android:id="@+id/arrow5"
+                        android:contentDescription="@string/arrow"
                         android:layout_width="18dp"
                         android:layout_height="28dp"
                         android:layout_marginTop="8dp"
@@ -326,7 +350,7 @@
                         app:srcCompat="@drawable/icn_arrow" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

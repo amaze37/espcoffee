@@ -1,28 +1,29 @@
 package com.example.espcoffee.http;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Bundle;
 import android.util.Log;
 
+import android.view.ViewGroup;
 import androidx.annotation.RequiresApi;
-
-import com.example.espcoffee.ErrorDialogFragment;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+import com.example.espcoffee.R;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class RequestHelper extends AsyncTask<Integer, String, Integer> {
-    private final String LOG_TAG = "AsyncRequest";
+    private final static String LOG_TAG = "AsyncRequest";
     private Activity callingActivity;
-    private Bundle bundle;
     private final OkHttpClient client;
     private String url;
     private String responseBody;
@@ -33,11 +34,11 @@ public class RequestHelper extends AsyncTask<Integer, String, Integer> {
                 .writeTimeout(3, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .build();
-        bundle = new Bundle();
         this.callingActivity = activity;
         this.url = url;
     }
 
+    @SuppressLint("ResourceType")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected Integer doInBackground(Integer... values) {
@@ -52,10 +53,11 @@ public class RequestHelper extends AsyncTask<Integer, String, Integer> {
         CompletableFuture<Response> future = callback.getFuture().thenApply(response -> response);
         try {
             responseBody = future.get().body().string();
-        } catch (ExecutionException e) {
-            publishProgress(String.format("Error: fail request %s", e.getMessage()));
         } catch (InterruptedException e) {
-            publishProgress(String.format("ERROR: forbidden request %s", e.getMessage()));
+            publishProgress((String) callingActivity.getResources().getText(R.string.error_unknown));
+            Log.e(LOG_TAG, e.getMessage(), e);
+        } catch (ExecutionException e) {
+            publishProgress((String) callingActivity.getResources().getText(R.string.error_no_connection_coffee));
         } catch (IOException e) {
             Log.e(LOG_TAG, e.getMessage(), e);
         } finally {
@@ -72,21 +74,13 @@ public class RequestHelper extends AsyncTask<Integer, String, Integer> {
         }
     }
 
-    @Override
-    protected void onPostExecute(Integer values) {
-        super.onPostExecute(values);
-    }
-
     public String getCompletableHttpBody() {
         return responseBody;
     }
 
     private void showErrorMessage(String message) {
-        if (!callingActivity.isFinishing()) {
-            ErrorDialogFragment errorDialogFragment = new ErrorDialogFragment(callingActivity);
-            bundle.putString("message", message);
-            errorDialogFragment.onCreateDialog(bundle).show();
-            errorDialogFragment.onDestroy();
-        }
+        @SuppressLint("ResourceType")
+        ViewGroup viewGroup = callingActivity.findViewById(R.id.mainContentLayout);
+        Crouton.makeText(callingActivity, message, Style.ALERT, viewGroup).show();
     }
 }

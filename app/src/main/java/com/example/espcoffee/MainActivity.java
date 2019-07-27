@@ -10,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.espcoffee.http.RequestHelper;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 public class MainActivity extends AppCompatActivity {
-    private final String LOG_TAG = this.getClass().getSimpleName();
     private Bundle mainActivityBundle;
 
     @Override
@@ -101,6 +101,12 @@ public class MainActivity extends AppCompatActivity {
         mainActivityBundle.putInt("nameId", nameId);
         mainActivityBundle.putString("url", url);
         mainActivityBundle.putInt("percent", percent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Crouton.cancelAllCroutons();
     }
 }
 
