@@ -10,10 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.espcoffee.http.RequestHelper;
-import com.google.android.material.navigation.NavigationView;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
     private Bundle mainActivityBundle;
 
     @Override

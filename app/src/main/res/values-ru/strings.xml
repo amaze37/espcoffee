@@ -10,6 +10,7 @@
     <string name="americano_info">просто чашка кофе</string>
     <string name="americano2x">Двойной американо</string>
     <string name="americano2x_info">самая популярная кнопка в самом неудобном месте</string>
+    <string name="arrow">стрелка</string>
 
     <string name="cappucino_beverage_info">Одна порция эспрессо с равным количеством молока с молочной пеной максимального объема, 80мл.</string>
     <string name="espresso_beverage_info">Кофе по истинно итальянскому рецепту, подаваемый в маленьких чашечках, 40мл.</string>

@@ -4,9 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Bundle;
 import android.util.Log;
 
+import android.view.ViewGroup;
 import androidx.annotation.RequiresApi;
 
 import java.io.IOException;
@@ -22,9 +22,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class RequestHelper extends AsyncTask<Integer, String, Integer> {
-    private final String LOG_TAG = "AsyncRequest";
+    private final static String LOG_TAG = "AsyncRequest";
     private Activity callingActivity;
-    private Bundle bundle;
     private final OkHttpClient client;
     private String url;
     private String responseBody;
@@ -35,7 +34,6 @@ public class RequestHelper extends AsyncTask<Integer, String, Integer> {
                 .writeTimeout(3, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .build();
-        bundle = new Bundle();
         this.callingActivity = activity;
         this.url = url;
     }
@@ -55,11 +53,11 @@ public class RequestHelper extends AsyncTask<Integer, String, Integer> {
         CompletableFuture<Response> future = callback.getFuture().thenApply(response -> response);
         try {
             responseBody = future.get().body().string();
-        } catch (ExecutionException e) {
-            publishProgress((String) callingActivity.getResources().getText(R.string.error_no_connection_coffee));
         } catch (InterruptedException e) {
             publishProgress((String) callingActivity.getResources().getText(R.string.error_unknown));
             Log.e(LOG_TAG, e.getMessage(), e);
+        } catch (ExecutionException e) {
+            publishProgress((String) callingActivity.getResources().getText(R.string.error_no_connection_coffee));
         } catch (IOException e) {
             Log.e(LOG_TAG, e.getMessage(), e);
         } finally {
@@ -76,16 +74,13 @@ public class RequestHelper extends AsyncTask<Integer, String, Integer> {
         }
     }
 
-    @Override
-    protected void onPostExecute(Integer values) {
-        super.onPostExecute(values);
-    }
-
     public String getCompletableHttpBody() {
         return responseBody;
     }
 
     private void showErrorMessage(String message) {
-        Crouton.makeText(callingActivity, message, Style.ALERT).show();
+        @SuppressLint("ResourceType")
+        ViewGroup viewGroup = callingActivity.findViewById(R.id.mainContentLayout);
+        Crouton.makeText(callingActivity, message, Style.ALERT, viewGroup).show();
     }
 }
