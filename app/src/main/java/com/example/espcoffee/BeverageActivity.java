@@ -2,21 +2,34 @@ package com.example.espcoffee;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.espcoffee.tools.CustomProgressBar;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static com.example.espcoffee.http.NetworkConstants.SERVER_IP;
+import static com.example.espcoffee.http.NetworkConstants.SERVER_PORT;
 
 public class BeverageActivity extends MainActivity {
+    private static final Logger LOGGER = Logger.getLogger(BeverageActivity.class.getName());
     private String url;
     private Integer percent;
     private Boolean isStarted = false;
+    private ServiceStatusChecker serviceStatusChecker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,47 +59,112 @@ public class BeverageActivity extends MainActivity {
             percent = bundle.getInt("percent");
         }
 
-
     }
 
     public void startDispensing(View view) {
-        ImageView coffeeImageView = findViewById(R.id.beverageCoffeeImage);
-        TextView percent1 = findViewById(R.id.percent);
         CustomProgressBar progress = findViewById(R.id.progressBar);
-        Button beverageStart = findViewById(R.id.beverageStart);
         ObjectAnimator anim = ObjectAnimator.ofInt(progress, "progress", 0, 100);
         anim.setDuration(percent);
+        serviceStatusChecker = new ServiceStatusChecker();
 
-        if (!isStarted) {
-            sendGetRequest(url);
-            coffeeImageView.setVisibility(View.INVISIBLE);
-            progress.setVisibility(View.VISIBLE);
-            percent1.setVisibility(View.VISIBLE);
-            progress.setTextView(findViewById(R.id.percent));
-            anim.start();
-            beverageStart.setText(R.string.stop);
-            beverageStart.setBackgroundColor(getResources().getColor(R.color.Red));
-            isStarted = true;
+        if (Boolean.FALSE.equals(isStarted)) {
+            serviceStatusChecker.execute();
         } else {
-            sendGetRequest(url);
-            coffeeImageView.setVisibility(View.VISIBLE);
-            progress.setVisibility(View.INVISIBLE);
-            percent1.setVisibility(View.INVISIBLE);
-            progress.setTextView(findViewById(R.id.percent));
-            anim.cancel();
-            beverageStart.setText(R.string.start);
-            beverageStart.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            serviceStatusChecker.cancel(false);
             isStarted = false;
         }
     }
 
     public void onBackPressed(View view) {
         super.onBackPressed();
+        serviceStatusChecker.cancel(false);
+    }
+
+    private void showConnectionError() {
+        ViewGroup viewGroup = findViewById(R.id.mainContentLayout);
+        Crouton.makeText(this, getResources().getText(R.string.error_no_connection_coffee), Style.ALERT, viewGroup)
+                .show();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Crouton.cancelAllCroutons();
+    }
+
+    private class ServiceStatusChecker extends AsyncTask<Void, Void, Boolean> {
+        private SocketAddress socketAddress;
+        private ObjectAnimator anim;
+
+        @Override
+        protected void onPreExecute() {
+            socketAddress = new InetSocketAddress(SERVER_IP, SERVER_PORT);
+            anim = ObjectAnimator.ofInt(findViewById(R.id.progressBar), "progress", 0, 100);
+            anim.setDuration(percent);
+
+            findViewById(R.id.beverageCoffeeImage).setVisibility(View.INVISIBLE);
+            findViewById(R.id.percent).setVisibility(View.VISIBLE);
+
+            Button beverage = findViewById(R.id.beverageStart);
+            beverage.setText(R.string.stop);
+            beverage.setBackgroundColor(getResources().getColor(R.color.Red));
+
+            CustomProgressBar customProgressBar = findViewById(R.id.progressBar);
+            customProgressBar.setVisibility(View.VISIBLE);
+            customProgressBar.setTextView(findViewById(R.id.percent));
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            try (Socket socket = new Socket()) {
+                socket.connect(socketAddress, 5000);
+            } catch (IOException e) {
+                LOGGER.log(Level.WARNING, e.getLocalizedMessage());
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean isSuccessConnect) {
+            if (Boolean.TRUE.equals(isSuccessConnect)) {
+                sendGetRequest(url);
+                anim.start();
+                isStarted = true;
+            } else {
+                showConnectionError();
+                updateUI();
+            }
+
+        }
+
+        @Override
+        protected void onCancelled() {
+            updateUI();
+            isStarted = false;
+        }
+
+        @Override
+        protected void onCancelled(Boolean aBoolean) {
+            updateUI();
+            if (aBoolean != null) {
+                isStarted = aBoolean;
+            } else {
+                isStarted = false;
+            }
+        }
+
+        private void updateUI() {
+            if (anim != null && Boolean.TRUE.equals(anim.isStarted())) {
+                anim.cancel();
+            }
+            Button beverage = findViewById(R.id.beverageStart);
+            beverage.setText(R.string.start);
+            beverage.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+
+            findViewById(R.id.beverageCoffeeImage).setVisibility(View.VISIBLE);
+            findViewById(R.id.progressBar).setVisibility(View.INVISIBLE);
+            findViewById(R.id.percent).setVisibility(View.INVISIBLE);
+        }
     }
 }

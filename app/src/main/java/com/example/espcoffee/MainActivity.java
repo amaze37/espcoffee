@@ -12,6 +12,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.espcoffee.http.RequestHelper;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 
+import static com.example.espcoffee.http.NetworkConstants.BASE_URL;
+
 public class MainActivity extends AppCompatActivity {
     private Bundle mainActivityBundle;
 
@@ -41,50 +43,50 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.app_bar_power){
-            sendGetRequest("http://192.168.1.150:80/socket1power");
+            sendGetRequest(BASE_URL + "socket1power");
         }
         if (id == R.id.app_bar_refresh){
-            sendGetRequest("http://192.168.1.150:80/");
+            sendGetRequest(BASE_URL);
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Deprecated
     public void socket1Power(View view) {
-        sendGetRequest("http://192.168.1.150:80/socket1power");
+        sendGetRequest(BASE_URL + "socket1power");
     }
 
     public void socket2Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.cappuccino, R.string.cappucino_beverage_info, R.string.cappucino, "http://192.168.1.150:80/socket2power", 100);
+        createBundle(R.drawable.cappuccino, R.string.cappucino_beverage_info, R.string.cappucino, BASE_URL + "socket2power", 100);
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket3Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.espresso, R.string.espresso_beverage_info, R.string.espresso, "http://192.168.1.150:80/socket3power", 1000);
+        createBundle(R.drawable.espresso, R.string.espresso_beverage_info, R.string.espresso, BASE_URL + "socket3power", 1000);
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket4Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.espresso2x, R.string.espresso2x_beverage_info, R.string.espresso2x, "http://192.168.1.150:80/socket4power", 15000);
+        createBundle(R.drawable.espresso2x, R.string.espresso2x_beverage_info, R.string.espresso2x, BASE_URL + "socket4power", 15000);
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket5Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.americano, R.string.americano_beverage_info, R.string.americano, "http://192.168.1.150:80/socket5power", 20000);
+        createBundle(R.drawable.americano, R.string.americano_beverage_info, R.string.americano, BASE_URL + "socket5power", 20000);
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
 
     public void socket6Power(View view) {
         Intent intent = new Intent(MainActivity.this, BeverageActivity.class);
-        createBundle(R.drawable.americano2x, R.string.americano2x_beverage_info, R.string.americano2x, "http://192.168.1.150:80/socket6power", 30000);
+        createBundle(R.drawable.americano2x, R.string.americano2x_beverage_info, R.string.americano2x, BASE_URL + "socket6power", 30000);
         intent.putExtra(Intent.EXTRA_RESTRICTIONS_BUNDLE, mainActivityBundle);
         startActivity(intent);
     }
