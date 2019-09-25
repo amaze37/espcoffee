@@ -77,7 +77,7 @@ public class BeverageActivity extends MainActivity {
 
     public void onBackPressed(View view) {
         super.onBackPressed();
-        serviceStatusChecker.cancel(false);
+        //serviceStatusChecker.cancel(false);
     }
 
     private void showConnectionError() {
@@ -146,6 +146,7 @@ public class BeverageActivity extends MainActivity {
 
         @Override
         protected void onCancelled(Boolean aBoolean) {
+            sendGetRequest(url);
             updateUI();
             if (aBoolean != null) {
                 isStarted = aBoolean;
